@@ -44,7 +44,7 @@ int get_room_in_nbr(char buff[], int *i)
     return (my_getnbr(nbr_str));
 }
 
-void get_start_end_rooms(char buff[], data_t *data)
+void get_start_end(char buff[], data_t *data)
 {
     int i = 0;
     data->start = malloc(sizeof(int) * 3);
@@ -64,6 +64,38 @@ void get_start_end_rooms(char buff[], data_t *data)
     data->end[2] = get_room_in_nbr(buff, &i);
 }
 
+int get_nbr_rooms(char buff[])
+{
+    int nbr = 0;
+    int i = 0;
+    int not_a_room = 0;
+
+    while (buff[i] != '\0') {
+        for (; buff[i] != '\n' && buff[i] != '\0'; i++);
+        i++;
+        if (not_a_room > 0)
+            not_a_room--;
+        if (buff[i] == '#' && buff[i + 1] == '#' && (buff[i + 2] == 's' || buff[i + 2] == 'e'))
+            not_a_room = 2;
+        if (buff[i] >= 48 && buff[i] <= 57 && buff[i + 1] != '-' && not_a_room == 0) {
+            nbr++;
+        }
+    }
+    return (nbr);
+}
+
+void get_rooms(char buff[], data_t *data)
+{
+    int i = 0;
+    data->rooms = malloc(sizeof(int *) * get_nbr_rooms(buff));
+
+    for (int a = 0; a < get_nbr_rooms(buff); a++)
+        data->rooms[a] = malloc(sizeof(int) * 3);
+    for (; buff[i] != '\n'; i++);
+    i++;
+    for (; buff[i] < 48 || buff[i] > 57; i++);
+}
+
 int main(void)
 {
     data_t *data = malloc(sizeof(data_t));
@@ -74,7 +106,8 @@ int main(void)
     if (size <= 5)
         return (84);
     data->nbr_ants = get_number_of_ants(buff);
-    get_start_end_rooms(buff, data);
+    get_start_end(buff, data);
+    get_rooms(buff, data);
     my_putstr("#number_of_ants\n");
     my_put_nbr(data->nbr_ants);
     my_putchar('\n');

@@ -17,7 +17,7 @@ SRC     =   main.c \
 
 OBJ     =       $(SRC:.c=.o)
 
-NAME    =       lemin
+NAME    =       lem_in
 
 CFLAGS  =       -W -Wextra -Wall -ansi -pedantic -g -std=c99 -I ./include
 

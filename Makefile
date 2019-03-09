@@ -10,6 +10,9 @@
 CC      =       gcc
 
 SRC     =   main.c \
+            parser.c \
+            get_rooms.c \
+            display_data.c \
             src/my_put_nbr.c \
             src/my_putchar.c \
             src/my_putstr.c \

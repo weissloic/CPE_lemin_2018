@@ -1,57 +1,86 @@
 /*
-** EPITECH PROJECT, 2019
-** lemin
+** EPITECH PROJECT, 2018
+** mylib.h
 ** File description:
-** my
+** list all the function
 */
 
-#include <fcntl.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/types.h>
+#include <stdio.h>
 #include <unistd.h>
+#include <stdarg.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 #ifndef MY_H_
 #define MY_H_
 
-typedef struct link_node {
-    int dest;
-    struct link_node *next;
-} link_node_t;
+// BASIC FUNCTION
+void my_putchar(char );
+int my_isneg(int );
+int my_put_nbr(int );
+void my_swap(int *, int *);
+int my_putstr(char const *);
+int my_strlen(char const *);
+int my_getnbr(char const *);
 
-typedef struct link {
-    struct link_node *head;
-} link_t;
+// FUNC
+void my_sort_in_array(int *, int);
+int my_compute_power_rec(int , int);
+int my_compute_square_root(int );
+int my_is_prime(int );
+int my_find_prime_sup(int );
 
-typedef struct graph {
-    int length;
-    struct link *array;
-} graph_t;
+// STR
+char *my_strcpy(char *, char const *);
+char *my_strncpy(char *, char const *, int );
+char *my_revstr(char *);
+char *my_strstr(char *, char const *);
+int my_strcmp(char const *, char const *);
+int my_strncmp(char const *, char const * , int );
+// find
+char *my_strupcase(char *);
+char *my_strlowcase(char *);
+char *my_strcapitalize(char *);
+int my_str_isalpha(char const *);
+int my_str_isnum(char const *);
+int my_str_islower(char const *);
+int my_str_isupper(char const *);
+int my_str_isprintable(char const *);
+//other
+int my_showstr(char const *);
+int my_showmem(char const * , int );
+char *my_strcat(char *, char const *);
+char *my_strncat(char *, char const * , int );
+int my_show_word_array(char *const *);
 
-typedef struct data_s {
-    int nbr_ants;
-    int **rooms;
-    int **tunnels;
-    int *start;
-    int *end;
-} data_t;
+// PRINTF FUNC
+int calc_convert_tobase(int , char *);
+long calc_pointer(long , char *);
+void my_putfloat(double , int );
+void my_putunsignd(long );
+void my_big_s(unsigned char *);
+void my_printf(char *, ...);
+void check_error(int , int , char *, va_list );
 
-int my_getnbr(char *str);
-int my_put_nbr(int nb);
-int my_putstr(char const *str);
-void my_putchar(char c);
-int get_nbr_tunnels(char buff[]);
-int get_nbr_rooms(char buff[]);
-int get_number_of_ants(char buff[]);
-void get_start_end(char buff[], data_t *data);
-void get_rooms(char buff[], data_t *data);
-void get_tunnels(char buff[], data_t *data);
-void display_ants(int ants);
-void display_rooms(data_t *data, char buff[]);
-void display_start(int *start);
-void display_end(int *end);
-void display_tunnels(data_t *data, char buff[]);
-int get_room_in_nbr(char buff[], int *i);
+// DISPLAY FUNC
+// base
+void display_octo(va_list );
+void display_bin(va_list );
+void display_hexa_up(va_list );
+void display_hexa_low(va_list );
+void display_pointer(va_list );
 
-#endif /* !MY_H_ */
+// basic
+void display_str(va_list );
+void display_char(va_list );
+void display_int(va_list );
+void display_float(va_list );
+// other
+void display_strbis(va_list );
+void display_percent(va_list );
+void display_unsigned(va_list );
+void error_big_s(unsigned char );
+
+#endif //MY_H_

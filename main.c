@@ -5,7 +5,8 @@
 ** main
 */
 
-#include "my.h"
+#include "include/my.h"
+#include "include/lem_in.h"
 
 int main(void)
 {

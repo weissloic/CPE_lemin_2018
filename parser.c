@@ -5,7 +5,8 @@
 ** parser
 */
 
-#include "my.h"
+#include "include/my.h"
+#include "include/lem_in.h"
 
 int get_number_of_ants(char buff[])
 {

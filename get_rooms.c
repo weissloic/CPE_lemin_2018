@@ -5,7 +5,8 @@
 ** get_rooms
 */
 
-#include "my.h"
+#include "include/my.h"
+#include "include/lem_in.h"
 
 int get_length_word(char buff[], int i)
 {

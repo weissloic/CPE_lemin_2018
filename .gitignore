@@ -6,3 +6,4 @@ lib/my/libmy.a
 CMakeLists.txt
 .idea
 *.dSYM
+map/

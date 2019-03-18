@@ -15,19 +15,15 @@
 #ifndef LEM_IN_H_
 #define LEM_IN_H_
 
-typedef struct link_node {
-    int dest;
-    struct link_node *next;
-} link_node_t;
-
-typedef struct link {
-    struct link_node *head;
+typedef struct node {
+    char *name;
+    int posx;
+    int posy;
+    int nbr_tunnels;
+    int busy;
+    struct node *next;
+    struct node **neighbor;
 } link_t;
-
-typedef struct graph {
-    int length;
-    struct link *array;
-} graph_t;
 
 typedef struct data_s {
     int nbr_ants;

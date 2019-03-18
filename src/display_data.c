@@ -5,19 +5,19 @@
 ** display_data
 */
 
-#include "include/my.h"
-#include "include/lem_in.h"
+#include "../include/my.h"
+#include "../include/lem_in.h"
 
-void display_tunnels(data_t *data, char buff[])
-{
-    my_putstr("#tunnels\n");
-    for (int i = 0; i < get_nbr_tunnels(buff); i++) {
-        my_put_nbr(data->tunnels[i][0]);
-        my_putchar('-');
-        my_put_nbr(data->tunnels[i][1]);
-        my_putchar('\n');
-    }
-}
+// void display_tunnels(data_t *data, char buff[])
+// {
+//     my_putstr("#tunnels\n");
+//     for (int i = 0; i < get_nbr_tunnels(buff); i++) {
+//         my_put_nbr(data->tunnels[i][0]);
+//         my_putchar('-');
+//         my_put_nbr(data->tunnels[i][1]);
+//         my_putchar('\n');
+//     }
+// }
 
 void display_end(int *end)
 {
@@ -39,18 +39,18 @@ void display_start(int *start)
     my_putchar('\n');
 }
 
-void display_rooms(data_t *data, char buff[])
-{
-    my_putstr("#rooms\n");
-    for (int i = 0; i < get_nbr_rooms(buff); i++) {
-        my_put_nbr(data->rooms[i][0]);
-        my_putchar(' ');
-        my_put_nbr(data->rooms[i][1]);
-        my_putchar(' ');
-        my_put_nbr(data->rooms[i][2]);
-        my_putchar('\n');
-    }
-}
+// void display_rooms(data_t *data, char buff[])
+// {
+//     my_putstr("#rooms\n");
+//     for (int i = 0; i < get_nbr_rooms(buff); i++) {
+//         my_put_nbr(data->rooms[i][0]);
+//         my_putchar(' ');
+//         my_put_nbr(data->rooms[i][1]);
+//         my_putchar(' ');
+//         my_put_nbr(data->rooms[i][2]);
+//         my_putchar('\n');
+//     }
+// }
 
 void display_ants(int ants)
 {

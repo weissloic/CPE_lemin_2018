@@ -5,9 +5,9 @@
 ** parser
 */
 
-#include "include/my.h"
-#include "include/lem_in.h"
-#include "include/get_next_line.h"
+#include "../include/my.h"
+#include "../include/lem_in.h"
+#include "../include/get_next_line.h"
 
 int get_number_of_ants(char *buff)
 {
@@ -23,25 +23,25 @@ int get_number_of_ants(char *buff)
     return (nbr);
 }
 
-void get_start_end(char *buff, data_t *data)
-{
-    int i = 0;
-    data->start = malloc(sizeof(int) * 3);
-    data->end = malloc(sizeof(int) * 3);
 
-    for (; buff[i] != '#' || buff[i + 1] != '#' || buff[i + 2] != 's'; i++);
-    for (; buff[i] != '\n'; i++);
-    i++;
-    data->start[0] = get_room_in_nbr(buff, &i);
-    data->start[1] = get_room_in_nbr(buff, &i);
-    data->start[2] = get_room_in_nbr(buff, &i);
-    for (; buff[i] != '#' || buff[i + 1] != '#' || buff[i + 2] != 'e'; i++);
-    for (; buff[i] != '\n'; i++);
-    i++;
-    data->end[0] = get_room_in_nbr(buff, &i);
-    data->end[1] = get_room_in_nbr(buff, &i);
-    data->end[2] = get_room_in_nbr(buff, &i);
-}
+// void get_rooms(char *buff, data_t *data , node_t *node)
+// {
+//     int i = 0;
+
+//     for (; buff[i] != '#' || buff[i + 1] != '#' || buff[i + 2] != 's'; i++);
+//     for (; buff[i] != '\n'; i++);
+//     i++;
+//     node->name = get_room_in_str(buff, &i);
+//     node->posx = get_room_in_nbr(buff, &i);
+//     node->posy = get_room_in_nbr(buff, &i);
+//     node->flag = START;
+//     // for (; buff[i] != '#' || buff[i + 1] != '#' || buff[i + 2] != 'e'; i++);
+//     // for (; buff[i] != '\n'; i++);
+//     // i++;
+//     // data->end[0] = get_room_in_nbr(buff, &i);
+//     // data->end[1] = get_room_in_nbr(buff, &i);
+//     // data->end[2] = get_room_in_nbr(buff, &i);
+// }
 
 // char *my_getstr(char *str)
 // {
@@ -101,30 +101,30 @@ char *get_file(void)
     return (str);
 }
 
-int get_nbr_tunnels(char buff[])
-{
-    int nbr = 0;
+// int get_nbr_tunnels(char buff[])
+// {
+//     int nbr = 0;
 
-    for (int i = 0; buff[i] != '\0'; i++) {
-        if (buff[i] == '-')
-            nbr++;
-    }
-    return (nbr);
-}
+//     for (int i = 0; buff[i] != '\0'; i++) {
+//         if (buff[i] == '-')
+//             nbr++;
+//     }
+//     return (nbr);
+// }
 
-void get_tunnels(char buff[], data_t *data)
-{
-    int line = 0;
+// void get_tunnels(char buff[], data_t *data)
+// {
+//     int line = 0;
 
-    data->tunnels = malloc(sizeof(int *) * get_nbr_tunnels(buff));
-    for (int a = 0; a < get_nbr_tunnels(buff); a++)
-        data->tunnels[a] = malloc(sizeof(int) * 2);
-    for (int i = 0; buff[i] != '\0'; i++) {
-        if (buff[i] == '-') {
-            i--;
-            data->tunnels[line][0] = get_room_in_nbr(buff, &i);
-            data->tunnels[line][1] = get_room_in_nbr(buff, &i);
-            line++;
-        }
-    }
-}
+//     data->tunnels = malloc(sizeof(int *) * get_nbr_tunnels(buff));
+//     for (int a = 0; a < get_nbr_tunnels(buff); a++)
+//         data->tunnels[a] = malloc(sizeof(int) * 2);
+//     for (int i = 0; buff[i] != '\0'; i++) {
+//         if (buff[i] == '-') {
+//             i--;
+//             data->tunnels[line][0] = get_room_in_nbr(buff, &i);
+//             data->tunnels[line][1] = get_room_in_nbr(buff, &i);
+//             line++;
+//         }
+//     }
+// }

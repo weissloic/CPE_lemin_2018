@@ -15,12 +15,13 @@ NAME	=	lem_in
 
 NAME_TEST = unit_tests
 
-MAIN	=	main.c
+MAIN	=	src/main.c
 
-SRC 	=   display_data.c \
-            get_rooms.c \
-            parser.c \
-			src/get_next_line.c
+SRC 	=   src/display_data.c \
+            src/get_rooms.c \
+            src/parser.c \
+			src/get_next_line.c\
+
 
 
 RED     = \033[0;31m

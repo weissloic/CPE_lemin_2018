@@ -12,7 +12,7 @@ int get_length_word(char buff[], int i)
 {
     int length = 0;
 
-    for (; buff[i] != ' '; i++)
+    for (; buff[i] != ' ' && buff[i] != '\n'; i++)
         length++;
     return (length);
 }

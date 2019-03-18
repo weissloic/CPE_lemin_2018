@@ -20,6 +20,7 @@ MAIN	=	main.c
 SRC 	=   display_data.c \
             get_rooms.c \
             parser.c \
+			src/get_next_line.c
 
 
 RED     = \033[0;31m

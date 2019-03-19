@@ -21,6 +21,7 @@ SRC 	=   src/display_data.c \
             src/get_rooms.c \
             src/parser.c \
 			src/get_next_line.c\
+			src/algorithm.c \
 
 
 

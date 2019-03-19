@@ -48,7 +48,6 @@ char *get_tunnel2_in_str(char *buff, int i)
         } else
             for (; buff[i] != '\n' && buff[i] != '\0'; i++);
     }
-    i++;
     return (nbr_str);
 }
 

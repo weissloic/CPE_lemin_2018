@@ -166,8 +166,7 @@ void display_list(node_t *node)
                 if (my_strcmp(neighbor_display->name, "-1") != 0) {
                     printf("name neighbors: %s\n", neighbor_display->name);
                     if (neighbor_display->neighbor != NULL)
-                        printf("posx of neighbor node: %d\n",
-                               neighbor_display->neighbor->posx);
+                        printf("posx of neighbor node: %d\n", neighbor_display->neighbor->posx);
                 }
                 neighbor_display = neighbor_display->next;
             }
@@ -182,17 +181,104 @@ void display_list(node_t *node)
 void connect_nodes(node_t *node)
 {
     node_t *tmp = node;
+    node_t *tmp2 = node->next;
     node_t *tmp_neighbor;
 
-    while (tmp->next != NULL) {
-        tmp_neighbor = tmp->neighbor;
+    while (tmp != NULL) {
+        tmp_neighbor = tmp->neighbor->next;
         while (tmp_neighbor != NULL) {
-            if (my_strcmp(tmp->next->name, tmp_neighbor->name) == 0) {
-                tmp_neighbor->neighbor = tmp->next;
+            tmp2 = node;
+            while (tmp2 != NULL) {
+                if (my_strcmp(tmp2->name, tmp_neighbor->name) == 0) {
+                    tmp_neighbor->neighbor = tmp2;
+                }
+                tmp2 = tmp2->next;
             }
             tmp_neighbor = tmp_neighbor->next;
         }
         tmp = tmp->next;
+    }
+}
+
+void find_path(node_t *node)
+{
+    node_t *tmp = node;
+    node_t *tmp_neighbor;
+    static int actual_ant = 1;
+
+    printf("#moves\n");
+    while (tmp->flag != START)
+        tmp = tmp->next;
+    tmp_neighbor = tmp->neighbor->next;
+    while (node->nbr_ants > 0) {
+        tmp = node;
+        while (tmp->flag != START)
+            tmp = tmp->next;
+        while (tmp->flag != END) {
+            tmp_neighbor = tmp->neighbor->next;
+            if (tmp_neighbor->neighbor->busy == 0 || tmp_neighbor->neighbor->flag == END) {
+                tmp->busy = 0;
+                tmp_neighbor->neighbor->busy = actual_ant;
+                printf("P%d-%s\n", actual_ant, tmp_neighbor->neighbor->name);
+                tmp = tmp_neighbor->neighbor;
+            }
+        }
+        actual_ant++;
+        node->nbr_ants--;
+    }
+}
+
+int my_get_length(char *buff, int i)
+{
+    int length = 0;
+
+    for (; buff[i] != '\n' && buff[i] != '\0'; i++)
+        length++;
+    return (length);
+}
+
+char *my_get_line(char *buff, int *i)
+{
+    char *str = malloc(sizeof(char) * my_get_length(buff, *i));
+    int a = 0;
+
+    for (; buff[i[0]] != '\n' && buff[i[0]] != '\0'; i[0]++) {
+        str[a] = buff[i[0]];
+        a++;
+    }
+    i[0]++;
+    return (str);
+}
+
+int print_type(char *str)
+{
+    static int ok = 0;
+
+    if (str[0] == '#' && str[1] == '#') {
+        if (str[2] == 's' || str[2] == 'e')
+            printf("%s\n", str);
+        return (-1);
+    }
+    if (str[0] != ' ' && str[1] == '-' && str[2] != ' ' && ok == 0) {
+        ok = 1;
+        printf("#tunnels\n");
+    }
+    return (0);
+}
+
+void display_data(char *buff)
+{
+    int i = 0;
+    char *str;
+    int type = 0;
+
+    printf("#number_of_ants\n%s\n", my_get_line(buff, &i));
+    printf("#rooms\n");
+    while (buff[i] != '\0' && type <= 0) {
+        str = my_get_line(buff, &i);
+        type = print_type(str);
+        if (type == 0)
+            printf("%s\n", str);
     }
 }
 
@@ -203,13 +289,14 @@ int main(void)
     int nbr = 0;
 
     buff = get_file();
+    display_data(buff);
     init_node(node, buff);
     nbr = count_nodes(buff);
     for (int i = 0; i < nbr - 1; i++)
         create_list(node, buff);
-    // node->nbr_ants = get_number_of_ants(buff);
     connect_nodes(node);
-    display_list(node);
+    //display_list(node);
+    find_path(node);
     // get_start_end(buff, data);
     // get_rooms(buff, data);
     // get_tunnels(buff, data);

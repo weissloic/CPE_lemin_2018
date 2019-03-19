@@ -37,7 +37,7 @@ int main(void)
     for (int i = 0; i < nbr - 1; i++)
         create_list(node, buff);
     connect_nodes(node);
-    find_path(node);
+    do_algo(node);
     free_node(node);
     return (0);
 }

@@ -77,7 +77,6 @@ void add_tunnel(node_t *, char *);
 void get_nbr_tunnels(node_t *, char *);
 
 // ALGORITHM
-void find_path(node_t *);
-
+void do_algo(node_t *);
 
 #endif /* LEM_IN_H_ */

@@ -39,7 +39,7 @@ int get_length_word(char *buff, int i)
 char *get_tunnel2_in_str(char *buff, int i)
 {
     int length = get_length_word_tunnel2(buff, i);
-    char *nbr_str = malloc(sizeof(char) * length);
+    char *nbr_str = malloc(sizeof(char) * (length + 1));
     int a = 0;
 
     for (; buff[i] != '\n' && buff[i] != '\0'; i++) {
@@ -49,13 +49,14 @@ char *get_tunnel2_in_str(char *buff, int i)
         } else
             for (; buff[i] != '\n' && buff[i] != '\0'; i++);
     }
+    nbr_str[length] = '\0';
     return (nbr_str);
 }
 
 char *get_tunnel_in_str(char *buff, int *i)
 {
     int length = get_length_word_tunnel(buff, *i);
-    char *nbr_str = malloc(sizeof(char) * length);
+    char *nbr_str = malloc(sizeof(char) * (length + 1));
     int a = 0;
 
     for (; buff[i[0]] != '-' && buff[i[0]] != '\n' && buff[i[0]] != '\0'; i[0]++) {
@@ -65,6 +66,7 @@ char *get_tunnel_in_str(char *buff, int *i)
         } else
             for (; buff[i[0]] != '-' && buff[i[0]] != '\n' && buff[i[0]] != '\0'; i[0]++);
     }
+    nbr_str[length] = '\0';
     i[0]++;
     return (nbr_str);
 }

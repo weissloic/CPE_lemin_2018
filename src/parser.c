@@ -16,9 +16,10 @@ int get_number_of_ants(char *buff)
     int nbr = 0;
 
     for (; buff[i] != '\n'; i++);
-    nbr_str = malloc(sizeof(char) * i);
+    nbr_str = malloc(sizeof(char) * (i + 1));
     for (int a = 0; a < i; a++)
         nbr_str[a] = buff[a];
+    nbr_str[i] = '\0';
     nbr = my_getnbr(nbr_str);
     return (nbr);
 }
@@ -34,13 +35,14 @@ int my_get_length(char *buff, int i)
 
 char *my_get_line(char *buff, int *i)
 {
-    char *str = malloc(sizeof(char) * my_get_length(buff, *i));
+    char *str = malloc(sizeof(char) * (my_get_length(buff, *i) + 1));
     int a = 0;
 
     for (; buff[i[0]] != '\n' && buff[i[0]] != '\0'; i[0]++) {
         str[a] = buff[i[0]];
         a++;
     }
+    str[a] = '\0';
     i[0]++;
     return (str);
 }
@@ -65,7 +67,7 @@ char *my_stradd(char *str1, char *str2)
         result[a++] = str1[i];
     for (int i = 0; str2[i] != 0; i++)
         result[a++] = str2[i];
-    result[a] = 0;
+    result[a] = '\0';
     return (result);
 }
 

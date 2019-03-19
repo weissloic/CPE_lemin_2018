@@ -5,7 +5,7 @@
 ## compile the lib
 ##
 
-CC	=	gcc
+CC	=	gcc -g
 
 SRC	=	my_compute_square_root.c	\
 		my_compute_power_rec.c		\

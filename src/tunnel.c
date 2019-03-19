@@ -47,6 +47,7 @@ void add_tunnel(node_t *node, char *str)
         tmp = tmp->next;
     }
     tmp->next = malloc(sizeof(node_t));
+    tmp->next->name = NULL;
     tmp->next->name = my_stradd(tmp->next->name, str);
     tmp->next->next = NULL;
 }

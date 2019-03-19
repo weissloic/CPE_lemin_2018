@@ -24,13 +24,14 @@ int is_room(char *buff, int i)
 char *get_room_in_str(char *buff, int *i)
 {
     int length = get_length_word(buff, *i);
-    char *nbr_str = malloc(sizeof(char) * length);
+    char *nbr_str = malloc(sizeof(char) * (length + 1));
     int a = 0;
 
     for (; buff[i[0]] != ' ' && buff[i[0]] != '\n'; i[0]++) {
         nbr_str[a] = buff[i[0]];
         a++;
     }
+    nbr_str[length] = '\0';
     i[0]++;
     return (nbr_str);
 }
@@ -38,13 +39,14 @@ char *get_room_in_str(char *buff, int *i)
 int get_room_in_nbr(char *buff, int *i)
 {
     int length = get_length_word(buff, *i);
-    char *nbr_str = malloc(sizeof(char) * length);
+    char *nbr_str = malloc(sizeof(char) * (length + 1));
     int a = 0;
 
     for (; buff[i[0]] != ' ' && buff[i[0]] != '\n'; i[0]++) {
         nbr_str[a] = buff[i[0]];
         a++;
     }
+    nbr_str[length] = '\0';
     i[0]++;
     return (my_getnbr(nbr_str));
 }

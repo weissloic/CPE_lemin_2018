@@ -11,7 +11,7 @@ int my_strlen2(char *str)
 
     while (str[value] == '-' || str[value] == '+')
         value++;
-    while (str[value] != 0 && str[value] >= 48 && str[value] <= 57)
+    while (str[value] != '\0' && str[value] >= 48 && str[value] <= 57)
         value++;
     return (value);
 }

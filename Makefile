@@ -26,8 +26,6 @@ SRC 	=   src/display_data.c \
 			src/node.c\
 			src/tunnel.c\
 
-
-
 RED     = \033[0;31m
 YELLOW  = \033[1;33m
 CYAN    = \033[0;36m

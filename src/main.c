@@ -8,6 +8,22 @@
 #include "../include/lem_in.h"
 #include "../include/my.h"
 
+void free_node(node_t *node)
+{
+    node_t *tmp;
+
+    while (node->next != NULL) {
+        tmp = node;
+        node->neighbor = node->neighbor->next;
+        node = node->next;
+        free(tmp->name);
+        free(tmp->neighbor);
+        free(tmp);
+    }
+    free(node->neighbor);
+    free(node);
+}
+
 int main(void)
 {
     node_t *node = malloc(sizeof(node_t));
@@ -22,5 +38,6 @@ int main(void)
         create_list(node, buff);
     connect_nodes(node);
     find_path(node);
+    free_node(node);
     return (0);
 }

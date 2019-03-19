@@ -33,21 +33,51 @@ typedef struct node {
     struct node *neighbor;
 } node_t;
 
-void get_nbr_tunnels(node_t *node, char *buff);
-int get_nbr_rooms(char *buff);
-int get_number_of_ants(char *buff);
-char *get_room_in_str(char *buff, int *i);
-void get_tunnels(node_t *node, char *buff);
-void display_ants(int ants);
-void display_start(int *start);
-void display_end(int *end);
-int get_room_in_nbr(char *buff, int *i);
+// MAIN
+
+// DISPLAY_DATA
+void display_end(int *);
+void display_start(int *);
+void display_ants(int);
+void display_data(char *);
+int print_type(char *);
+
+// GET_LENGTH
+int get_length_word_tunnel2(char *, int);
+int get_length_word_tunnel(char *, int);
+int get_length_word(char *, int);
+char *get_tunnel2_in_str(char *, int);
+char *get_tunnel_in_str(char *, int *);
+
+// GET_ROOMS
+int is_room(char *, int);
+char *get_room_in_str(char *, int *);
+int get_room_in_nbr(char *, int *);
+int get_nbr_rooms(char *);
+void get_room(char *, node_t *);
+
+// NODE
+int count_nodes(char *);
+void connect_nodes(node_t *);
+void init_node(node_t *, char *);
+void create_list(node_t *, char *);
+void display_list(node_t *);
+
+// PARSER
+int get_number_of_ants(char *);
+int my_get_length(char *, int);
+char *my_get_line(char *, int *);
+char *my_stradd(char *, char *);
 char *get_file(void);
-void get_room(char *buff, node_t *node);
-char *get_tunnel_in_str(char *buff, int *i);
-char *get_tunnel2_in_str(char *buff, int i);
-int get_length_word_tunnel(char *buff, int i);
-int get_length_word_tunnel2(char *buff, int i);
-char *my_stradd(char *str1, char *str2);
+
+// TUNNEL
+int is_tunnel(char *, int);
+int tunnel_connected(node_t *, char *);
+void add_tunnel(node_t *, char *);
+void get_nbr_tunnels(node_t *, char *);
+
+// ALGORITHM
+void find_path(node_t *);
+
 
 #endif /* LEM_IN_H_ */

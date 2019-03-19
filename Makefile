@@ -22,6 +22,9 @@ SRC 	=   src/display_data.c \
             src/parser.c \
 			src/get_next_line.c\
 			src/algorithm.c \
+			src/get_length.c\
+			src/node.c\
+			src/tunnel.c\
 
 
 

@@ -79,4 +79,13 @@ void get_nbr_tunnels(node_t *, char *);
 // ALGORITHM
 void do_algo(node_t *);
 
+// ERROR
+int gest_error(char *);
+int first_number(char *);
+int miss_start_or_end(char *, char *);
+char *my_strncpy(char *, char const *, int);
+int size_line(char const *);
+int condition(char);
+char **my_str_to_word_array(char const *);
+
 #endif /* LEM_IN_H_ */

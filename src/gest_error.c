@@ -8,10 +8,16 @@
 #include "../include/my.h"
 #include "../include/lem_in.h"
 
+
+
 int first_number(char *buffer)
 {
-    if (buffer[0] <= 0)
+    char **tab = my_str_to_word_array(buffer);
+    int number = my_getnbr(tab[0]);
+
+    if (number <= 0)
         return (84);
+
     return (0);
 }
 

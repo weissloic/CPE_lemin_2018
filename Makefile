@@ -27,6 +27,7 @@ SRC 	=   src/display_data.c \
 			src/tunnel.c\
 			src/str_to_word_tab.c\
 			src/gest_error.c\
+			src/error_links.c\
 
 RED     = \033[0;31m
 YELLOW  = \033[1;33m

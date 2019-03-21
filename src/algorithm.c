@@ -27,7 +27,7 @@ node_t *go_to_next_neighbor(node_t *node)
     if (node->neighbor->next != NULL)
         node = node->neighbor->next->neighbor;
     else
-        node = find_end(node);
+        return (NULL);
     return (node);
 }
 
@@ -56,7 +56,7 @@ node_t *find_next_to_move(node_t *node)
     static char *name = "Lucas";
 
     while (loop == 1) {
-        printf("\n%s %s\n", name, tmp_prev->name);
+        my_printf("\n%s %s\n", name, tmp_prev->name);
         if (((tmp_prev->busy != 0 || tmp_prev->flag == START) && (tmp->busy == 0 || tmp->flag == END)) && my_strcmp(name, tmp_prev->name) != 0) {
             loop = 0;
             name = my_strdup(tmp->name);
@@ -79,7 +79,7 @@ void do_algo(node_t *node)
     int actual_ant = 1;
     int loop = 1;
 
-    printf("#moves\n");
+    my_printf("#moves\n");
     while (nbr_ants > 0) {
         // tmp = find_start(node);
         // tmp_next = go_to_next_neighbor(tmp);
@@ -103,13 +103,13 @@ void do_algo(node_t *node)
             move_ant(&tmp, &tmp_next, tmp->busy);
         if (tmp_next->busy <= actual_ant) {
             actual_ant = 1;
-            printf("\n");
+            my_printf("\n");
         } else
-            printf(" ");
-        printf("P%d-%s", tmp_next->busy, tmp_next->name);
+            my_printf(" ");
+        my_printf("P%d-%s", tmp_next->busy, tmp_next->name);
         if (tmp_next->busy > actual_ant)
             actual_ant = tmp_next->busy;
         loop = 1;
     }
-    printf("\n\n");
+    my_printf("\n\n");
 }

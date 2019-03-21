@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <stdio.h>
 
-int my_strlen(char *str)
+static int my_strlen(char *str)
 {
     int i = 0;
 

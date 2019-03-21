@@ -92,5 +92,7 @@ char *my_strncpy(char *, char const *, int);
 int size_line(char const *);
 int condition(char);
 char **my_str_to_word_array(char const *);
+int check_links(node_t *node);
+int check_pos(node_t *node);
 
 #endif /* LEM_IN_H_ */

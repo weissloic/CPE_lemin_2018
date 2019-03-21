@@ -41,11 +41,11 @@ int check_valid_tunnel(char *str)
     return (0);
 }
 
-int check_two_end_start(char *buffer, node_t *node)
+void check_two_end_start(char *buffer, node_t *node)
 {
     char **tab = my_str_to_word_array(buffer);
 
-    for (int i = 0; tab[i] != '\0'; i++) {
+    for (int i = 0; tab[i] != NULL; i++) {
         if (my_strcmp(tab[i], "##end") == 0)
             node->number_end++;
         if (my_strcmp(tab[i], "##start") == 0)

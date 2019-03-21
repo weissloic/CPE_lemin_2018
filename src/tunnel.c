@@ -13,8 +13,8 @@ int is_tunnel(char *buff, int i)
 {
     int counter = 0;
 
-    for (; buff[i] != '\n' && buff[i] != '\0'; i++) {
-        if (buff[i] == '-')
+    for (; buff[i + 1] != '\n' && buff[i + 1] != '\0'; i++) {
+        if (buff[i - 1] != ' ' && buff[i] == '-' && buff[i + 1] != ' ')
             counter++;
     }
     if (counter == 1)
@@ -58,9 +58,9 @@ void get_nbr_tunnels(node_t *node, char *buff)
     char *str = NULL;
     char *str2 = NULL;
 
-    while (buff[i + 1] != '\0') {
+    while (buff[i] != '\0') {
         while (is_tunnel(buff, i) == 0) {
-            for (; buff[i] != '\n' && buff[i] != '\0'; i++);
+            for (; buff[i] != '\n' && buff[i + 1] != '\0'; i++);
             i++;
         }
         str = get_tunnel_in_str(buff, &i);
@@ -70,6 +70,7 @@ void get_nbr_tunnels(node_t *node, char *buff)
             node->nbr_tunnels++;
             add_tunnel(node, str2);
         }
+        for (; buff[i] != '\n' && buff[i + 1] != '\0'; i++);
         i++;
     }
 }

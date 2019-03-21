@@ -76,6 +76,8 @@ char *get_file(void)
     char *str = get_next_line(0);
     char *str_to_add = get_next_line(0);
 
+    if (str == NULL || str_to_add == NULL)
+        return (NULL);
     while (str_to_add != NULL) {
         str = my_stradd(str, "\n");
         str = my_stradd(str, str_to_add);

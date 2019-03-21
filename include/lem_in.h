@@ -80,6 +80,9 @@ void get_nbr_tunnels(node_t *, char *);
 
 // ALGORITHM
 void do_algo(node_t *);
+node_t *go_to_next_neighbor(node_t *node);
+node_t *go_to_prev_neighbor(node_t *node, node_t *tmp);
+node_t *find_start(node_t *node);
 
 // ERROR
 int gest_error(char *);

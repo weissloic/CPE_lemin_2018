@@ -60,7 +60,7 @@ void get_nbr_tunnels(node_t *node, char *buff)
 
     while (buff[i + 1] != '\0') {
         while (is_tunnel(buff, i) == 0) {
-            for (; buff[i] != '\n'; i++);
+            for (; buff[i] != '\n' && buff[i] != '\0'; i++);
             i++;
         }
         str = get_tunnel_in_str(buff, &i);

@@ -59,12 +59,14 @@ char *get_tunnel_in_str(char *buff, int *i)
     char *nbr_str = malloc(sizeof(char) * (length + 1));
     int a = 0;
 
-    for (; buff[i[0]] != '-' && buff[i[0]] != '\n' && buff[i[0]] != '\0'; i[0]++) {
+    for (; buff[i[0]] != '-' && buff[i[0]] != '\n' &&
+    buff[i[0]] != '\0'; i[0]++) {
         if (buff[i[0] + 1] != ' ') {
             nbr_str[a] = buff[i[0]];
             a++;
         } else
-            for (; buff[i[0]] != '-' && buff[i[0]] != '\n' && buff[i[0]] != '\0'; i[0]++);
+            for (; buff[i[0]] != '-' && buff[i[0]] != '\n' &&
+            buff[i[0]] != '\0'; i[0]++);
     }
     nbr_str[length] = '\0';
     i[0]++;

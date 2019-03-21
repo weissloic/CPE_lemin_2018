@@ -17,7 +17,7 @@ int count_nodes(char *buff)
 
     while (buff[i] != '\0') {
         for (int j = i;
-             buff[j] != '\n' && buff[j] != '\0' && buff[j + 1] != '#'; j++) {
+            buff[j] != '\n' && buff[j] != '\0' && buff[j + 1] != '#'; j++) {
             if (buff[j] == ' ')
                 counter++;
             i = j;
@@ -84,25 +84,25 @@ void display_list(node_t *node)
 
     while (node_display != NULL) {
         neighbor_display = node_display->neighbor;
-        printf("busy: %d\n", node_display->busy);
-        printf("name: %s\n", node_display->name);
-        printf("flag: %d\n", node_display->flag);
-        printf("nbr tunnels: %d\n", node_display->nbr_tunnels);
+        my_printf("busy: %d\n", node_display->busy);
+        my_printf("name: %s\n", node_display->name);
+        my_printf("flag: %d\n", node_display->flag);
+        my_printf("nbr tunnels: %d\n", node_display->nbr_tunnels);
         if (node_display->nbr_tunnels != 0) {
             while (neighbor_display != NULL) {
                 if (my_strcmp(neighbor_display->name, "-1") != 0) {
-                    printf("name neighbors: %s\n", neighbor_display->name);
+                    my_printf("name neighbors: %s\n", neighbor_display->name);
                     if (neighbor_display->neighbor != NULL)
-                        printf("posx of neighbor node: %d\n",
-                               neighbor_display->neighbor->posx);
+                        my_printf("posx of neighbor node: %d\n",
+                        neighbor_display->neighbor->posx);
                 }
                 neighbor_display = neighbor_display->next;
             }
         }
-        printf("posx: %d\n", node_display->posx);
-        printf("posy: %d\n", node_display->posy);
+        my_printf("posx: %d\n", node_display->posx);
+        my_printf("posy: %d\n", node_display->posy);
         node_display = node_display->next;
-        printf("\n\n");
+        my_printf("\n\n");
     }
 }
 

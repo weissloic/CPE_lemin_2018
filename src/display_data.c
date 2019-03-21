@@ -41,13 +41,13 @@ void display_data(char *buff)
     char *str;
     int type = 0;
 
-    printf("#number_of_ants\n%s\n", my_get_line(buff, &i));
-    printf("#rooms\n");
+    my_printf("#number_of_ants\n%s\n", my_get_line(buff, &i));
+    my_printf("#rooms\n");
     while (buff[i] != '\0' && type <= 0) {
         str = my_get_line(buff, &i);
         type = print_type(str);
         if (type == 0)
-            printf("%s\n", str);
+            my_printf("%s\n", str);
     }
 }
 
@@ -57,12 +57,12 @@ int print_type(char *str)
 
     if (str[0] == '#' && str[1] == '#') {
         if (str[2] == 's' || str[2] == 'e')
-            printf("%s\n", str);
+            my_printf("%s\n", str);
         return (-1);
     }
     if (str[0] != ' ' && str[1] == '-' && str[2] != ' ' && ok == 0) {
         ok = 1;
-        printf("#tunnels\n");
+        my_printf("#tunnels\n");
     }
     return (0);
 }

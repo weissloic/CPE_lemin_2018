@@ -34,6 +34,7 @@ int my_find_prime_sup(int );
 
 // STR
 char *my_strcpy(char *, char const *);
+char *my_strdup(char const *);
 char *my_strncpy(char *, char const *, int );
 char *my_revstr(char *);
 char *my_strstr(char *, char const *);

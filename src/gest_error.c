@@ -48,4 +48,3 @@ int gest_error(char *buff)
         return (84);
     return (0);
 }
-    

@@ -34,7 +34,7 @@ int size_line(char const *str)
 
 int condition(char c)
 {
-    if (c != '\t' && c != ' ' && c != '\0' && c != '\n')
+    if (c != '\t' && c != '\0' && c != '\n')
         return (1);
     return (0);
 }

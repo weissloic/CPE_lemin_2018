@@ -28,8 +28,6 @@ int miss_start_or_end(char *buffer, char *line)
     char **tab = my_str_to_word_array(buffer);
 
     for (int i = 0; tab[i] != NULL; i++) {
-        if (tab[1] == NULL)
-            return (84);
         if (my_strcmp(tab[i], line) == 0)
             return (0);
     }

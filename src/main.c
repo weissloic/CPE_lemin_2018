@@ -32,7 +32,7 @@ int main(void)
 
     buff = get_file();
     if (gest_error(buff) == 84)
-	return (84);
+        return (84);
     display_data(buff);
     init_node(node, buff);
     nbr = count_nodes(buff);

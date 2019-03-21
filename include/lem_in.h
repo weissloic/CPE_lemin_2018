@@ -85,7 +85,7 @@ node_t *go_to_prev_neighbor(node_t *node, node_t *tmp);
 node_t *find_start(node_t *node);
 
 // ERROR
-int gest_error(char *);
+int gest_error(char *, node_t *);
 int first_number(char *);
 int miss_start_or_end(char *, char *);
 char *my_strncpy(char *, char const *, int);

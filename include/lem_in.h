@@ -29,8 +29,6 @@ typedef struct node {
     int posy;
     int nbr_tunnels;
     int busy;
-    int number_start;
-    int number_end;
     struct node *next;
     struct node *neighbor;
 } node_t;
@@ -85,14 +83,15 @@ node_t *go_to_prev_neighbor(node_t *node, node_t *tmp);
 node_t *find_start(node_t *node);
 
 // ERROR
-int gest_error(char *, node_t *);
+int gest_error(char *);
 int first_number(char *);
 int miss_start_or_end(char *, char *);
 char *my_strncpy(char *, char const *, int);
 int size_line(char const *);
 int condition(char);
 char **my_str_to_word_array(char const *);
-int check_links(node_t *node);
-int check_pos(node_t *node);
+int check_links(node_t *);
+int check_pos(node_t *);
+int check_two_end_start(char *, char *);
 
 #endif /* LEM_IN_H_ */

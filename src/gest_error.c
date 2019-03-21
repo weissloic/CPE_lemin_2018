@@ -41,16 +41,18 @@ int check_valid_tunnel(char *str)
     return (0);
 }
 
-void check_two_end_start(char *buffer, node_t *node)
+int check_two_end_start(char *buffer, char *line)
 {
     char **tab = my_str_to_word_array(buffer);
+    int counter = 0;
 
     for (int i = 0; tab[i] != NULL; i++) {
-        if (my_strcmp(tab[i], "##end") == 0)
-            node->number_end++;
-        if (my_strcmp(tab[i], "##start") == 0)
-            node->number_start++;
+        if (my_strcmp(tab[i], line) == 0)
+            counter++;
     }
+    if (counter != 1)
+        return (84);
+    return (0);
 }
 
 int first_number(char *buffer)
@@ -90,12 +92,14 @@ int miss_start_or_end(char *buffer, char *line)
     return (84);
 }
 
-int gest_error(char *buff, node_t *node)
+int gest_error(char *buff)
 {
-    check_two_end_start(buff, node);
     if (first_number(buff) == 84 || miss_start_or_end(buff, "##start") == 84
-        || miss_start_or_end(buff, "##end") == 84
-            || wrong_first_line(buff) == 84 || node->number_end > 1 || node->number_start > 1)
+    || miss_start_or_end(buff, "##end") == 84
+    || wrong_first_line(buff) == 84
+    || check_two_end_start(buff, "##start") == 84
+    || check_two_end_start(buff, "##end") == 84) {
         return (84);
+    }
     return (0);
 }

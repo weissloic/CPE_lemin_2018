@@ -131,7 +131,7 @@ int main(void)
     int nbr = 0;
 
     buff = get_file();
-    if (buff == NULL || gest_error(buff, node) == 84)
+    if (buff == NULL || gest_error(buff) == 84)
         return (84);
     buff = transform_buff(buff);
     init_node(node, buff);

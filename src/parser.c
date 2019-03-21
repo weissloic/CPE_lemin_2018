@@ -74,17 +74,20 @@ char *my_stradd(char *str1, char *str2)
 char *get_file(void)
 {
     char *str = get_next_line(0);
-    char *str_to_add = get_next_line(0);
+    char *str_to_add;
 
-    if (str == NULL || str_to_add == NULL)
+    if (str == NULL)
+        return (NULL);
+    str_to_add = get_next_line(0);
+    if (str_to_add == NULL)
         return (NULL);
     while (str_to_add != NULL) {
         str = my_stradd(str, "\n");
         str = my_stradd(str, str_to_add);
         str_to_add = get_next_line(0);
-        if (str_to_add == NULL)
-            return (NULL);
     }
+    if (str == NULL)
+        return (NULL);
     str = my_stradd(str, "\n");
     return (str);
 }

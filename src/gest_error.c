@@ -14,7 +14,7 @@ int check_valid_room(char *str)
 
     if (str[0] == '#')
         return (0);
-    for (int i = 0; str[i] != '\0' && str[i + 1] != '#'; i++) {
+    for (int i = 0; str[i + 1] != '\0' && str[i + 1] != '#'; i++) {
         if (str[i] == ' ')
             counter++;
     }
@@ -29,7 +29,7 @@ int check_valid_tunnel(char *str)
 
     if (str[0] == '#')
         return (0);
-    for (int i = 0; str[i] != '\0' && str[i + 1] != '#'; i++) {
+    for (int i = 0; str[i + 1] != '\0' && str[i + 1] != '#'; i++) {
         if (str[i] == '-') {
             if (str[i + 1] == ' ')
                 return (84);
@@ -56,9 +56,12 @@ void check_two_end_start(char *buffer, node_t *node)
 int first_number(char *buffer)
 {
     char **tab = my_str_to_word_array(buffer);
-    int number = my_getnbr(tab[0]);
+    int number = 0;
     int i = 1;
 
+    if (tab[0] == NULL)
+        return (84);
+    number = my_getnbr(tab[0]);
     if (number <= 0)
         return (84);
     for (; tab[i] != NULL; i++) {
@@ -70,7 +73,7 @@ int first_number(char *buffer)
 
 int wrong_first_line(char *buffer)
 {
-    for (int i = 0; buffer[i] != '\n'; i++)
+    for (int i = 0; buffer[i] != '\n' && buffer[i] != '\0'; i++)
         if (buffer[i] == ' ')
             return (84);
     return (0);

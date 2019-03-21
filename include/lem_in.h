@@ -29,6 +29,8 @@ typedef struct node {
     int posy;
     int nbr_tunnels;
     int busy;
+    int number_start;
+    int number_end;
     struct node *next;
     struct node *neighbor;
 } node_t;

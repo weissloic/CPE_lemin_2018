@@ -82,6 +82,8 @@ char *get_file(void)
         str = my_stradd(str, "\n");
         str = my_stradd(str, str_to_add);
         str_to_add = get_next_line(0);
+        if (str_to_add == NULL)
+            return (NULL);
     }
     str = my_stradd(str, "\n");
     return (str);

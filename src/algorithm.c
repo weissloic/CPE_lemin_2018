@@ -51,7 +51,7 @@ node_t *go_to_prev_neighbor(node_t *node, node_t *tmp)
     return (prev);
 }
 
-node_t *find_next_to_move(node_t *node)
+node_t *find_next_to_move(node_t *node, int *backspace)
 {
     node_t *tmp = find_end(node);
     node_t *tmp_prev = go_to_prev_neighbor(node, tmp);
@@ -62,15 +62,10 @@ node_t *find_next_to_move(node_t *node)
         if (((tmp_prev->busy != 0 || tmp_prev->flag == START) && (tmp->busy == 0 || tmp->flag == END)) && my_strcmp(name, tmp_prev->name) != 0) {
             loop = 0;
             if (tmp_prev->flag != START) {
-                if (my_strcmp(name, "Lucas") == 0)
-                    my_printf("\n");
-                else
-                    my_printf(" ");
                 name = my_strdup(tmp->name);
             }
             else {
-                if (my_strcmp(name, "Lucas") != 0)
-                    my_printf(" ");
+                *backspace += 1;
                 name = my_strdup("Lucas");
             }
         }
@@ -90,26 +85,37 @@ void do_algo(node_t *node)
     node_t *tmp_next = go_to_next_neighbor(tmp);
     int ant = 1;
     int actual_ant = 1;
-    int loop = 1;
+    int backspace = 0;
 
     my_printf("#moves\n");
     while (nbr_ants > 0) {
-        tmp = find_next_to_move(node);
+        tmp = find_next_to_move(node, &backspace);
         if (tmp->flag == START && nbr_ants == 1) {
-            tmp = find_next_to_move(node);
+            my_printf("\n");
+            tmp = find_next_to_move(node, &backspace);
         }
         tmp_next = go_to_next_neighbor(tmp);
-        if (tmp_next->flag == END)
+        if (tmp_next == NULL) {
+            backspace = 1;
+            tmp_next = find_end(node);
+            if (tmp == NULL)
+                tmp = go_to_prev_neighbor(node, tmp);
+        }
+        if (tmp_next->flag == END) {
             nbr_ants--;
+        }
         if (tmp->flag == START) {
             move_ant(&tmp, &tmp_next, ant);
             ant++;
         } else
             move_ant(&tmp, &tmp_next, tmp->busy);
-        my_printf("P%d-%s", tmp_next->busy, tmp_next->name);
+        my_printf("P%d-%s ", tmp_next->busy, tmp_next->name);
         if (tmp_next->busy > actual_ant)
             actual_ant = tmp_next->busy;
-        loop = 1;
+        if (backspace >= 1) {
+            my_printf("\n");
+            backspace = 0;
+        }
     }
-    my_printf("\n\n");
+    my_printf("\n");
 }

@@ -142,7 +142,7 @@ int main(void)
     if (check_links(node) == 84 || check_pos(node) == 84)
         return (84);
     display_data(buff);    
-    // do_algo(node);
-    // free_node(node);
+    do_algo(node);
+    free_node(node);
     return (0);
 }

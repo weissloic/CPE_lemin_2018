@@ -134,6 +134,7 @@ int main(void)
     if (buff == NULL || gest_error(buff) == 84)
         return (84);
     buff = transform_buff(buff);
+    display_data(buff);
     init_node(node, buff);
     nbr = count_nodes(buff);
     for (int i = 0; i < nbr - 1; i++)
@@ -141,8 +142,7 @@ int main(void)
     connect_nodes(node);
     if (check_links(node) == 84 || check_pos(node) == 84)
         return (84);
-    display_data(buff);    
-    do_algo(node);
-    free_node(node);
+    //do_algo(node);
+    //free_node(node);
     return (0);
 }

@@ -60,7 +60,7 @@ int print_type(char *str)
             my_printf("%s\n", str);
         return (-1);
     }
-    if (str[0] != ' ' && str[1] == '-' && str[2] != ' ' && ok == 0) {
+    if (is_tunnel(str, 0) == 1 && ok == 0) {
         ok = 1;
         my_printf("#tunnels\n");
     }

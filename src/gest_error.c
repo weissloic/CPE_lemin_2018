@@ -15,11 +15,14 @@ int check_valid_room(char *str)
     if (str[0] == '#')
         return (0);
     for (int i = 0; str[i + 1] != '\0' && str[i + 1] != '#'; i++) {
-        if (str[i] == ' ')
+        if (str[i] == ' ') {
             counter++;
+        }
     }
-    if (counter != 2)
+    if (counter != 2) {
+
         return (84);
+    }
     return (0);
 }
 
@@ -31,13 +34,17 @@ int check_valid_tunnel(char *str)
         return (0);
     for (int i = 0; str[i + 1] != '\0' && str[i + 1] != '#'; i++) {
         if (str[i] == '-') {
-            if (str[i + 1] == ' ')
+            if (str[i + 1] == ' ') {
+
                 return (84);
+            }
             counter++;
         }
     }
-    if (counter != 1)
+    if (counter != 1) {
         return (84);
+
+    }
     return (0);
 }
 
@@ -50,8 +57,10 @@ int check_two_end_start(char *buffer, char *line)
         if (my_strcmp(tab[i], line) == 0)
             counter++;
     }
-    if (counter != 1)
+    if (counter != 1) {
+
         return (84);
+    }
     return (0);
 }
 
@@ -70,27 +79,18 @@ int first_number(char *buffer)
     int number = 0;
     int i = 1;
 
-    //my_printf("#number_of_ants\n");
-    if (tab[0] == NULL)
+    if (tab[0] == NULL) {
         return (84);
-    // if (check_ant(tab[0]) == 84)
-    //     return (84);
-    number = my_getnbr(tab[0]);
-    if (number <= 0)
-        return (84);
-    for (; tab[i] != NULL; i++) {
-        if (check_valid_room(tab[i]) == 84 && check_valid_tunnel(tab[i]) == 84)
-            return (84);
     }
-    //my_printf("%d\n", number);
-    return (0);
-}
-
-int wrong_first_line(char *buffer)
-{
-    for (int i = 0; buffer[i] != '\n' && buffer[i] != '\0'; i++)
-        if (buffer[i] == ' ')
+    number = my_getnbr(tab[0]);
+    if (number <= 0) {
+        return (84);
+    }
+    for (; tab[i] != NULL; i++) {
+        if (check_valid_room(tab[i]) == 84 && check_valid_tunnel(tab[i]) == 84) {
             return (84);
+        }
+    }
     return (0);
 }
 
@@ -107,10 +107,8 @@ int miss_start_or_end(char *buffer, char *line)
 
 int gest_error(char *buff)
 {
-    //if (first_number(buff) == 84)
     if (first_number(buff) == 84 || miss_start_or_end(buff, "##start") == 84
     || miss_start_or_end(buff, "##end") == 84
-    || wrong_first_line(buff) == 84
     || check_two_end_start(buff, "##start") == 84
     || check_two_end_start(buff, "##end") == 84) {
         return (84);

@@ -59,11 +59,10 @@ node_t *find_next_to_move(node_t *node, int *backspace)
     static char *name = "Lucas";
 
     while (loop == 1) {
-        if (tmp_prev->flag == START && tmp_prev->nbr_ants <= 1) {
+        if (tmp_prev->flag == START && node->nbr_ants <= 1) {
             tmp = find_end(node);
             tmp_prev = go_to_prev_neighbor(node, tmp);
             name = my_strdup("Lucas");
-            my_printf("\n");
         }
         if (((tmp_prev->busy != 0 || tmp_prev->flag == START) && (tmp->busy == 0 || tmp->flag == END)) && my_strcmp(name, tmp_prev->name) != 0) {
             loop = 0;
@@ -83,6 +82,22 @@ node_t *find_next_to_move(node_t *node, int *backspace)
     return (tmp_prev);
 }
 
+node_t *find_more_on_same_turn(node_t *node, node_t *actual)
+{
+    node_t *tmp = go_to_prev_neighbor(node, actual);
+    node_t *tmp_next = go_to_next_neighbor(tmp);
+    node_t *tmp_prev = go_to_prev_neighbor(node, tmp);
+
+    while (tmp->flag != START) {
+        if ((tmp->busy != 0 || tmp->flag == START) && (tmp_next->busy == 0 || tmp_next->flag == END))
+            return (tmp);
+        tmp = go_to_prev_neighbor(node, tmp);
+        tmp_next = go_to_prev_neighbor(node, tmp_next);
+        tmp_prev = go_to_prev_neighbor(node, tmp_prev);
+    }
+    return (node);
+}
+
 void do_algo(node_t *node)
 {
     const int total_ants = node->nbr_ants;
@@ -90,23 +105,36 @@ void do_algo(node_t *node)
     node_t *tmp_next = go_to_next_neighbor(tmp);
     int ant = 1;
     int backspace = 0;
+    int ok = 1;
 
     my_printf("#moves\n");
     while (node->nbr_ants > 0) {
-        if (ant <= total_ants) {
-            tmp = find_next_to_move(node, &backspace);
+        if (ant < total_ants) {
+            if (tmp->flag != START) {
+                ok = 2;
+                tmp = find_more_on_same_turn(node, tmp);
+            }
+            if (tmp->flag == START) {
+                if (ok == 2)
+                    my_printf("\n");
+                else
+                    ok = 1;
+                tmp = find_next_to_move(node, &backspace);
+            }
             tmp_next = go_to_next_neighbor(tmp);
             if (ant + 1 > total_ants)
                 backspace = 0;
         } else {
             tmp_next = find_end(node);
             tmp = go_to_prev_neighbor(node, tmp_next);
-            while (tmp->busy == 0 && (tmp_next->busy != 0 || tmp_next->flag != END)) {
+            while ((tmp->busy == 0 && tmp->flag != START) || (tmp_next->busy != 0 && tmp_next->flag != END)) {
                 tmp = go_to_prev_neighbor(node, tmp);
                 tmp_next = go_to_prev_neighbor(node, tmp_next);
             }
             if (tmp_next->flag == END) {
-                my_printf("\n");
+                if (ok == 2)
+                    my_printf("\n");
+                ok++;
                 backspace = 0;
             } else
                 my_printf(" ");
@@ -126,8 +154,7 @@ void do_algo(node_t *node)
         my_printf("P%d-%s", tmp_next->busy, tmp_next->name);
         if (backspace == 1) {
             my_printf("\n");
-            backspace = 0;
-        } else if (ant <= total_ants)
+        } else if (ant < total_ants)
             my_printf(" ");
         backspace = 0;
     }

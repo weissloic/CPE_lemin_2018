@@ -75,6 +75,7 @@ char *get_file(void)
 {
     char *str = get_next_line(0);
     char *str_to_add;
+    int counter = 0;
 
     if (str == NULL)
         return (NULL);
@@ -82,6 +83,9 @@ char *get_file(void)
     if (str_to_add == NULL)
         return (str);
     while (str_to_add != NULL) {
+        counter++;
+        if (counter >= 15000)
+            return (NULL);
         str = my_stradd(str, "\n");
         str = my_stradd(str, str_to_add);
         str_to_add = get_next_line(0);

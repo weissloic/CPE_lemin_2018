@@ -18,16 +18,12 @@ NAME_TEST = unit_tests
 MAIN	=	src/main.c
 
 SRC 	=   src/display_data.c \
-            src/get_rooms.c \
             src/parser.c \
 			src/get_next_line.c\
-			src/algorithm.c \
-			src/get_length.c\
-			src/node.c\
-			src/tunnel.c\
 			src/str_to_word_tab.c\
 			src/gest_error.c\
-			src/error_links.c\
+			src/transform_buff.c\
+			src/checker.c\
 
 RED     = \033[0;31m
 YELLOW  = \033[1;33m

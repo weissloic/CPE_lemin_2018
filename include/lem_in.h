@@ -33,14 +33,13 @@ typedef struct node {
     struct node *neighbor;
 } node_t;
 
-// MAIN
-
 // DISPLAY_DATA
-void display_end(int *);
-void display_start(int *);
-void display_ants(int);
 void display_data(char *);
 int print_type(char *);
+char *transform_buff(char *buff);
+int is_comment(char *buff);
+int check_valid_room(char *str);
+int check_valid_tunnel(char *str);
 
 // GET_LENGTH
 int get_length_word_tunnel2(char *, int);
@@ -75,12 +74,6 @@ int is_tunnel(char *, int);
 int tunnel_connected(node_t *, char *);
 void add_tunnel(node_t *, char *);
 void get_nbr_tunnels(node_t *, char *);
-
-// ALGORITHM
-void do_algo(node_t *);
-node_t *go_to_next_neighbor(node_t *node);
-node_t *go_to_prev_neighbor(node_t *node, node_t *tmp);
-node_t *find_start(node_t *node);
 
 // ERROR
 int gest_error(char *);

@@ -8,33 +8,6 @@
 #include "../include/my.h"
 #include "../include/lem_in.h"
 
-void display_end(int *end)
-{
-    my_putstr("##end\n");
-    for (int i = 0; i < 3; i++) {
-        my_put_nbr(end[i]);
-        my_putchar(' ');
-    }
-    my_putchar('\n');
-}
-
-void display_start(int *start)
-{
-    my_putstr("##start\n");
-    for (int i = 0; i < 3; i++) {
-        my_put_nbr(start[i]);
-        my_putchar(' ');
-    }
-    my_putchar('\n');
-}
-
-void display_ants(int ants)
-{
-    my_putstr("#number_of_ants\n");
-    my_put_nbr(ants);
-    my_putchar('\n');
-}
-
 void display_data(char *buff)
 {
     int i = 0;

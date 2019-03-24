@@ -27,7 +27,7 @@ int size_line(char const *str)
     while (str[n] != 0) {
         if (str[n] == '\n')
             nb_line++;
-    n++;
+        n++;
     }
     return (nb_line);
 }

@@ -9,21 +9,6 @@
 #include "../include/lem_in.h"
 #include "../include/get_next_line.h"
 
-int get_number_of_ants(char *buff)
-{
-    int i = 0;
-    char *nbr_str;
-    int nbr = 0;
-
-    for (; buff[i] != '\n'; i++);
-    nbr_str = malloc(sizeof(char) * (i + 1));
-    for (int a = 0; a < i; a++)
-        nbr_str[a] = buff[a];
-    nbr_str[i] = '\0';
-    nbr = my_getnbr(nbr_str);
-    return (nbr);
-}
-
 int my_get_length(char *buff, int i)
 {
     int length = 0;
@@ -92,6 +77,5 @@ char *get_file(void)
     }
     if (str == NULL)
         return (NULL);
-    str = my_stradd(str, "\n");
     return (str);
 }
